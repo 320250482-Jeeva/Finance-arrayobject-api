@@ -1,8 +1,6 @@
-fastapi
-uvicorn
-gunicorn
+fastapi>=0.115,<0.116
+uvicorn[standard]>=0.30,<0.31
+gunicorn>=21,<22
 requests
 python-pptx
-pydantic
 email-validator
-
