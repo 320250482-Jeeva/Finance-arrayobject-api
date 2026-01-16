@@ -19,7 +19,7 @@ from fastapi.responses import JSONResponse
 from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.enum.text import PP_ALIGN
-app = APIRouter(tags=["Array Converter"])
+router = APIRouter(tags=["Array Converter"])
 # ============================================================================
 # Logging
 # ============================================================================
@@ -440,7 +440,7 @@ def _parse_summary(summary: str) -> List[str]:
 # FastAPI Application
 # ============================================================================
 
-@app.get("/health", tags=["Health"])
+@router.get("/health", tags=["Health"])
 async def health_check():
     """Health check endpoint"""
     return {
@@ -451,7 +451,7 @@ async def health_check():
     }
 
 
-@app.post("/api/v1/generate-and-send", response_model=APIResponse, tags=["Email"])
+@router.post("/api/v1/generate-and-send", response_model=APIResponse, tags=["Email"])
 async def generate_and_send(request: PPTEmailRequest) -> APIResponse:
     """
     Generate PPTX and send via email
@@ -546,7 +546,7 @@ async def generate_and_send(request: PPTEmailRequest) -> APIResponse:
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/api/v1/example", tags=["Documentation"])
+@router.get("/api/v1/example", tags=["Documentation"])
 async def get_example():
     """Get example request/response"""
     return {
